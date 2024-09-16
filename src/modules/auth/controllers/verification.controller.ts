@@ -1,28 +1,28 @@
 import { Request, Response, NextFunction } from "express";
 
-import loginService from "../services/login.service";
+import verificationService from "../services/verification.service";
 
-class LoginController {
-    async googleLogin(
+class SignupController {
+    async verifyCode(
         req: Request,
         res: Response,
         next: NextFunction
     ) {
         try {
-            const result = await loginService.googleLogin(req.body);
+            const result = await verificationService.verifyCode(req.body);
             return res.status(200).json(result);
         } catch (err) {
             return next(err);
         }
     }
 
-    async emailLogin(
+    async resendCode(
         req: Request,
         res: Response,
         next: NextFunction
     ) {
         try {
-            const user = await loginService.emailLogin(req.body);
+            const user = await verificationService.resendCode(req.body);
             return res.status(200).json(user);
         } catch (err) {
             return next(err);
@@ -30,4 +30,4 @@ class LoginController {
     }
 }
 
-export default new LoginController();
+export default new SignupController();

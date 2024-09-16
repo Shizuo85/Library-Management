@@ -33,7 +33,25 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             required: true,
             default: false
-        }
+        },
+        temp_email: {
+            type: String,
+        },
+        verification_code: {
+            type: String,
+        },
+        verification_exp: {
+            type: Date,
+        },
+        passwordResetToken: {
+            type: String,
+        },
+        passwordResetOtp: {
+            type: String,
+        },
+        passwordResetExp: {
+            type: Date,
+        },
     },
     { timestamps: true }
 );

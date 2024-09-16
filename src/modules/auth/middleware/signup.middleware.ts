@@ -60,9 +60,9 @@ class SignupMiddleware {
 
     async emailSignup(req: Request, res: Response, next: NextFunction) {
         try {
-            req.body.email = normalizeEmail(req.body.email);
             sanitizer(req.body);
             await signupSchema.emailSignup.validateAsync(req.body);
+            req.body.email = normalizeEmail(req.body.email);
             return next();
         } catch (err: any) {
             err.status = 422;

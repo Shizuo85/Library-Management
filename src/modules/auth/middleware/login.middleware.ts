@@ -45,8 +45,6 @@ class LoginMiddleware {
                 throw err;
             }
             req.body.email = user.email;
-            req.body.first_name = user.first_name;
-            req.body.last_name = user.last_name;
             return next();
         } catch(err: any){
             err.status = 400;
@@ -56,9 +54,9 @@ class LoginMiddleware {
 
     async emailLogin(req: Request, res: Response, next: NextFunction) {
         try {
-            req.body.email = normalizeEmail(req.body.email);
             sanitizer(req.body);
             await loginSchema.emailLogin.validateAsync(req.body);
+            req.body.email = normalizeEmail(req.body.email);
             return next();
         } catch(err: any){
             err.status = 422;

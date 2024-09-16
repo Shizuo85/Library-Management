@@ -18,7 +18,7 @@ class AuthController {
                         action: 'login_jwt',
                     },
                     process.env.JWT_SECRET!,
-                    { expiresIn: process.env.JWT_EXPIRY }
+                    { expiresIn: process.env.LOGIN_JWT_EXPIRY }
                 )
             );
             return res
