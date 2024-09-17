@@ -132,7 +132,7 @@ class SignupService {
         );
 
         return {
-            message: 'Login Successful',
+            message: 'Signup Successful',
             data: {
                 access_token: token,
                 refresh_token: refreshToken,

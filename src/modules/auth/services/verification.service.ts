@@ -52,6 +52,17 @@ class SignupService {
             )
         );
 
+        const refreshToken = encrypt(
+            jwt.sign(
+                {
+                    user: user._id,
+                    action: 'refresh_jwt',
+                },
+                process.env.JWT_SECRET!,
+                { expiresIn: process.env.REFRESH_JWT_EXPIRY }
+            )
+        );
+
         sendMail(
             { email: user.email },
             'Welcome',
@@ -64,7 +75,10 @@ class SignupService {
 
         return {
             message: 'Account verified successfully',
-            data: token,
+            data: {
+                access_token: token,
+                refresh_token: refreshToken,
+            },
         };
     }
 
