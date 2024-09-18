@@ -37,6 +37,12 @@ const userSchema = new mongoose.Schema(
         temp_email: {
             type: String,
         },
+        email_code: {
+            type: String,
+        },
+        email_code_exp: {
+            type: Date,
+        },
         verification_code: {
             type: String,
         },

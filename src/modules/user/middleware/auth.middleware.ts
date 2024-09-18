@@ -38,6 +38,9 @@ export default async function (
         }
 
         req.user = payLoad.user;
+        req.role = user.role;
+        req.email = user.email;
+        req.temp_email = user.temp_email;
         return next();
     } catch (err: any) {
         err.status = err.status ?? 400;
