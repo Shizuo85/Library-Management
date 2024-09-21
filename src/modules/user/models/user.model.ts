@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
         last_name: {
             type: String,
             required: true,
-        },   
+        },
         email: {
             type: String,
             required: true,
@@ -28,11 +28,12 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
             enum: ['verified', 'unverified', 'suspended'],
+            default: 'unverified',
         },
         google_login: {
             type: Boolean,
             required: true,
-            default: false
+            default: false,
         },
         temp_email: {
             type: String,

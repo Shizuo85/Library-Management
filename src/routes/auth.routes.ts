@@ -43,6 +43,7 @@ authRouter.post(
 
 authRouter.post(
     '/verify-code',
+    verificationMiddleware.verificationAuth,
     verificationMiddleware.verifyCode,
     verificationController.verifyCode
 );

@@ -122,7 +122,7 @@ class LoginService {
     async googleLogin(data: any) {
         const user = await userRepo.findOne({
             email: { $eq: data.email },
-            googleLogin: { $eq: true },
+            google_login: { $eq: true },
         });
 
         if (!user) {

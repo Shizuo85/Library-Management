@@ -9,7 +9,7 @@ import { sendMail } from '../../mailjet/mailjet.controller';
 
 class SignupService {
     async verifyCode(data: any) {
-        const user: any = await userRepo.findOne({ _id: { $eq: data.id } });
+        const user: any = await userRepo.findOne({ _id: { $eq: data.user } });
         if (!user) {
             const err: any = new Error('Account not found');
             err.status = 400;

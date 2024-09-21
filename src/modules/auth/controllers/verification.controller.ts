@@ -1,15 +1,19 @@
 import { Request, Response, NextFunction } from "express";
+import CustomRequest from "../../../lib/custom.request";
 
 import verificationService from "../services/verification.service";
 
 class SignupController {
     async verifyCode(
-        req: Request,
+        req: CustomRequest,
         res: Response,
         next: NextFunction
     ) {
         try {
-            const result = await verificationService.verifyCode(req.body);
+            const result = await verificationService.verifyCode({
+                ...req.body,
+                user: req.user
+            });
             return res.status(200).json(result);
         } catch (err) {
             return next(err);
