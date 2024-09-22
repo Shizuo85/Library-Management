@@ -7,7 +7,7 @@ import CustomRequest from "../../../lib/custom.request";
 import { decrypt } from "../../aes/aes.service";
 import verificationSchema from '../schemas/verification.schema';
 
-class SignupMiddleware {
+class VerificationMiddleware {
     async verifyCode(req: Request, res: Response, next: NextFunction) {
         try {
             await verificationSchema.verifyCode.validateAsync(req.body);
@@ -53,6 +53,6 @@ class SignupMiddleware {
     }
 }
 
-export default new SignupMiddleware();
+export default new VerificationMiddleware();
 
 

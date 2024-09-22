@@ -8,7 +8,7 @@ import { decrypt } from "../../aes/aes.service";
 
 import newPasswordSchema from "../schemas/forgot_password.schema";
 
-class newPasswordMiddleware {
+class NewPasswordMiddleware {
     async forgotPassword(req: Request, res: Response, next: NextFunction) {
         try {
             sanitizer(req.body);
@@ -27,10 +27,8 @@ class newPasswordMiddleware {
         next: NextFunction
     ) {
         try {
-            sanitizer(req.body);
             sanitizer(req.query);
             await newPasswordSchema.forgotPasswordVerify.validateAsync({
-                ...req.body,
                 token: req.query.token,
                 otp: req.query.otp,
             });
@@ -66,7 +64,7 @@ class newPasswordMiddleware {
         }
     }
 
-    async resetPassword(req: any, res: Response, next: NextFunction) {
+    async resetPassword(req: Request, res: Response, next: NextFunction) {
         try {
             sanitizer(req.body);
             await newPasswordSchema.resetPassword.validateAsync(req.body);
@@ -78,4 +76,4 @@ class newPasswordMiddleware {
     }
 }
 
-export default new newPasswordMiddleware();
+export default new NewPasswordMiddleware();

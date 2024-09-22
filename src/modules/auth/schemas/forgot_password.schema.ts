@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import validator from 'validator';
 
-class newPasswordSchema {
+class NewPasswordSchema {
     forgotPassword = Joi.object({
         email: Joi.string().email().required(),
     });
@@ -30,9 +30,9 @@ class newPasswordSchema {
             }, 'Password Validation'),
         confirmPassword: Joi.string()
             .required()
-            .valid(Joi.ref('password'))
+            .valid(Joi.ref('newPassword'))
             .messages({ 'any.only': 'Passwords do not match' }),
     });
 }
 
-export default new newPasswordSchema();
+export default new NewPasswordSchema();

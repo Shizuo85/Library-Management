@@ -22,7 +22,7 @@ class AccountSchema {
             }, "Password Validation"),
             confirmPassword: Joi.string()
             .required()
-            .valid(Joi.ref('password'))
+            .valid(Joi.ref('newPassword'))
             .messages({ 'any.only': 'Passwords do not match' }),
     });
 

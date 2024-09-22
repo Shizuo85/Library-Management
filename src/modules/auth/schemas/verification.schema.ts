@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-class SignupSchema {
+class VerificationSchema {
     verifyCode = Joi.object({
         code: Joi.string().required(),
     });
@@ -10,4 +10,4 @@ class SignupSchema {
     });
 }
 
-export default new SignupSchema();
+export default new VerificationSchema();

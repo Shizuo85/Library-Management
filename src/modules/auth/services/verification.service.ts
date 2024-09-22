@@ -7,7 +7,7 @@ import { encrypt } from '../../aes/aes.service';
 import userRepo from '../../user/repository/user.repo';
 import { sendMail } from '../../mailjet/mailjet.controller';
 
-class SignupService {
+class VerificationService {
     async verifyCode(data: any) {
         const user: any = await userRepo.findOne({ _id: { $eq: data.user } });
         if (!user) {
@@ -133,4 +133,4 @@ class SignupService {
     }
 }
 
-export default new SignupService();
+export default new VerificationService();

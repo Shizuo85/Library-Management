@@ -8,7 +8,7 @@ import { sendMail } from "../../mailjet/mailjet.controller";
 
 import userRepo from "../../user/repository/user.repo";
 
-class newPasswordService {
+class NewPasswordService {
     async forgotPassword(data: any) {
         const user = await userRepo.findOne({ email: { $eq: data.email } });
 
@@ -34,12 +34,13 @@ class newPasswordService {
             throw err;
         }
 
-        user.passwordResetToken = crypto
+        user.password_reset_token = crypto
             .createHash("sha256")
             .update(resetToken)
             .digest("hex");
-        user.passwordResetExp = new Date(Date.now() + 15 * 60 * 1000);
-        user.passwordResetOtp = await bcrypt.hash(otp, 12);
+        user.password_reset_exp = new Date(Date.now() + 15 * 60 * 1000);
+        user.password_reset_otp = await bcrypt.hash(otp, 12);
+        console.log(otp)
 
         await user.save();
 
@@ -70,8 +71,8 @@ class newPasswordService {
             .digest("hex");
 
         const user = await userRepo.findOne({
-            passwordResetToken: { $eq: hashedToken },
-            passwordResetExp: { $gt: Date.now() },
+            password_reset_token: { $eq: hashedToken },
+            password_reset_exp: { $gt: Date.now() },
         });
 
         if (!user) {
@@ -82,7 +83,7 @@ class newPasswordService {
 
         const check = await bcrypt.compare(
             data.otp,
-            user.passwordResetOtp ? user.passwordResetOtp : ""
+            user.password_reset_otp ? user.password_reset_otp : ""
         );
 
         if (!check) {
@@ -141,4 +142,4 @@ class newPasswordService {
     }
 }
 
-export default new newPasswordService();
+export default new NewPasswordService();

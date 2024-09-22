@@ -3,7 +3,7 @@ import CustomRequest from "../../../lib/custom.request";
 
 import verificationService from "../services/verification.service";
 
-class SignupController {
+class VerificationController {
     async verifyCode(
         req: CustomRequest,
         res: Response,
@@ -34,4 +34,4 @@ class SignupController {
     }
 }
 
-export default new SignupController();
+export default new VerificationController();

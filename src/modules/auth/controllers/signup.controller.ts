@@ -10,7 +10,7 @@ class SignupController {
     ) {
         try {
             const result = await signupService.googleSignup(req.body);
-            return res.status(200).json(result);
+            return res.status(201).json(result);
         } catch (err) {
             return next(err);
         }
@@ -36,7 +36,7 @@ class SignupController {
     ) {
         try {
             const user = await signupService.googleApiUrl(req.body);
-            return res.status(200).json(user);
+            return res.status(201).json(user);
         } catch (err) {
             return next(err);
         }

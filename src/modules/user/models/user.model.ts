@@ -50,13 +50,13 @@ const userSchema = new mongoose.Schema(
         verification_exp: {
             type: Date,
         },
-        passwordResetToken: {
+        password_reset_token: {
             type: String,
         },
-        passwordResetOtp: {
+        password_reset_otp: {
             type: String,
         },
-        passwordResetExp: {
+        password_reset_exp: {
             type: Date,
         },
     },

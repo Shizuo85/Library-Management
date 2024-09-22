@@ -5,7 +5,7 @@ import CustomRequest from "../../../lib/custom.request";
 import newPasswordService from "../services/forgot_password.service";
 
 
-class newPasswordController {
+class NewPasswordController {
     async forgotPassword(
         req: Request,
         res: Response,
@@ -26,7 +26,6 @@ class newPasswordController {
     ) {
         try {
             const user = await newPasswordService.forgotPasswordVerify({
-                ...req.body,
                 token: req.query.token,
                 otp: req.query.otp,
             });
@@ -53,4 +52,4 @@ class newPasswordController {
     }
 }
 
-export default new newPasswordController();
+export default new NewPasswordController();
