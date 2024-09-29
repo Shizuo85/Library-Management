@@ -30,9 +30,9 @@ class AuthorController {
     ) {
         try {
             const user = await authorService.fetchAuthor({
-                ...req.body,
                 user: req.user,
-                role: req.role
+                role: req.role,
+                author: req.params.id
             });
             return res.status(200).json(user);
         } catch (err) {
@@ -47,7 +47,7 @@ class AuthorController {
     ) {
         try {
             const user = await authorService.fetchAuthors({
-                ...req.body,
+                ...req.query,
                 user: req.user,
                 role: req.role
             });
@@ -66,7 +66,8 @@ class AuthorController {
             const user = await authorService.updateAuthor({
                 ...req.body,
                 user: req.user,
-                role: req.role
+                role: req.role,
+                author: req.params.id
             });
             return res.status(200).json(user);
         } catch (err) {
@@ -80,11 +81,11 @@ class AuthorController {
     ) {
         try {
             const user = await authorService.deleteAuthor({
-                ...req.body,
                 user: req.user,
-                role: req.role
+                role: req.role,
+                author: req.params.id
             });
-            return res.status(200).json(user);
+            return res.status(204).json(user);
         } catch (err) {
             return next(err);
         }

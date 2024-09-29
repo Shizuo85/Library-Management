@@ -229,6 +229,9 @@ class AccountService {
             }`,
         };
     }
+
+    //update profile
+    //fetch profile
 }
 
 export default new AccountService();

@@ -24,6 +24,10 @@ class BookRepo {
             .findOneAndUpdate(filter, data, { new: true, upsert: false })
             .select(select);
     }
+
+    async findOneAndDelete(filter: any) {
+        return await bookModel.findOneAndDelete(filter);
+    }
 }
 
 export default new BookRepo();
