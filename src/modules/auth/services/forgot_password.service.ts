@@ -40,7 +40,6 @@ class NewPasswordService {
             .digest("hex");
         user.password_reset_exp = new Date(Date.now() + 15 * 60 * 1000);
         user.password_reset_otp = await bcrypt.hash(otp, 12);
-        console.log(otp)
 
         await user.save();
 

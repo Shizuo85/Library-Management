@@ -1,11 +1,9 @@
 import Joi from 'joi';
 
 class BookSchema {
-    fetchBooks = Joi.object({})
-
-    fetchBook = Joi.object({})
-
-    createBook = Joi.object({})
+    createBook = Joi.object({
+        title: Joi.string().required()
+    })
 
     updateBook = Joi.object({})
 

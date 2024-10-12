@@ -14,6 +14,7 @@ class GeneralSchema {
     });
 
     pagination = Joi.object({
+        status: Joi.string().valid('available', 'borrowed'),
         limit: Joi.number(),
         page: Joi.number(),
         sort: Joi.string().valid('asc', 'desc'),
@@ -21,7 +22,7 @@ class GeneralSchema {
         end: Joi.date().iso().greater(Joi.ref('start')).messages({
             'date.greater': 'End date must be greater than Start date',
         }),
-        search: Joi.string()
+        search: Joi.string(),
     });
 }
 

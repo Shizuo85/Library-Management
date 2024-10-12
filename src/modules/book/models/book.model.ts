@@ -19,6 +19,7 @@ const bookSchema = new mongoose.Schema(
             type: String,
             required: true,
             enum: ['available', 'borrowed'],
+            default: 'available'
         },
     },
     { timestamps: true }

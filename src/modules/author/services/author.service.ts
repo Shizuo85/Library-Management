@@ -60,7 +60,7 @@ class AuthorService {
         return {
             message: 'success',
             data: {
-                author: author,
+                author,
             },
         };
     }
@@ -130,8 +130,7 @@ class AuthorService {
         if (data.search) {
             query.name = { $regex: data.search, $options: 'i' };
         }
-
-        console.log(query);
+        
         const result = await authorRepo.fetchAuthors(
             query,
             Math.abs(Number(data.limit) || 10),

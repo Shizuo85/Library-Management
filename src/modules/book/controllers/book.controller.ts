@@ -9,6 +9,7 @@ class BookController {
         try {
             const user = await bookService.createBook({
                 ...req.body,
+                author: req.params.id,
                 user: req.user,
                 role: req.role,
             });
@@ -22,6 +23,7 @@ class BookController {
         try {
             const user = await bookService.fetchBook({
                 ...req.body,
+                book: req.params.id,
                 user: req.user,
                 role: req.role,
             });
@@ -30,11 +32,11 @@ class BookController {
             return next(err);
         }
     }
-    
+
     async fetchBooks(req: CustomRequest, res: Response, next: NextFunction) {
         try {
             const user = await bookService.fetchBooks({
-                ...req.body,
+                ...req.query,
                 user: req.user,
                 role: req.role,
             });

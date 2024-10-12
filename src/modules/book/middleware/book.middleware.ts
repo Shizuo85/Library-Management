@@ -15,28 +15,6 @@ class BookMiddleware {
         }
     }
 
-    async fetchBooks(req: Request, res: Response, next: NextFunction) {
-        try {
-            sanitizer(req.body);
-            await bookSchema.fetchBooks.validateAsync(req.body);
-            return next();
-        } catch(err: any){
-            err.status = 422;
-            return next(err);
-        }
-    }
-
-    async fetchBook(req: Request, res: Response, next: NextFunction) {
-        try {
-            sanitizer(req.body);
-            await bookSchema.fetchBook.validateAsync(req.body);
-            return next();
-        } catch(err: any){
-            err.status = 422;
-            return next(err);
-        }
-    }
-
     async updateBook(req: Request, res: Response, next: NextFunction) {
         try {
             sanitizer(req.body);
