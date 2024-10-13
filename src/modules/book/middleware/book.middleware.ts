@@ -26,32 +26,10 @@ class BookMiddleware {
         }
     }
 
-    async deleteBook(req: Request, res: Response, next: NextFunction) {
-        try {
-            sanitizer(req.body);
-            await bookSchema.deleteBook.validateAsync(req.body);
-            return next();
-        } catch(err: any){
-            err.status = 422;
-            return next(err);
-        }
-    }
-
     async borrowBook(req: Request, res: Response, next: NextFunction) {
         try {
             sanitizer(req.body);
             await bookSchema.borrowBook.validateAsync(req.body);
-            return next();
-        } catch(err: any){
-            err.status = 422;
-            return next(err);
-        }
-    }
-
-    async returnBook(req: Request, res: Response, next: NextFunction) {
-        try {
-            sanitizer(req.body);
-            await bookSchema.returnBook.validateAsync(req.body);
             return next();
         } catch(err: any){
             err.status = 422;

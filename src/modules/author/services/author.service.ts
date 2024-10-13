@@ -147,9 +147,9 @@ class AuthorService {
     }
 
     async deleteAuthor(data: any) {
-        if (data.role != 'admin' && data.role != 'librarian') {
+        if (data.role != 'admin') {
             const err: any = new Error(
-                'Only admins and librarians can create an author'
+                'Only admins can delete an author'
             );
             err.status = 403;
             throw err;

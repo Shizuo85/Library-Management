@@ -2,10 +2,6 @@ import mongoose from 'mongoose';
 
 const bookRecordSchema = new mongoose.Schema(
     {
-        title: {
-            type: String,
-            required: true,
-        },
         user: {
             type: mongoose.Types.ObjectId,
             ref: 'user',

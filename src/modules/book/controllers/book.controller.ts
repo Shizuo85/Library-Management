@@ -22,7 +22,6 @@ class BookController {
     async fetchBook(req: CustomRequest, res: Response, next: NextFunction) {
         try {
             const user = await bookService.fetchBook({
-                ...req.body,
                 book: req.params.id,
                 user: req.user,
                 role: req.role,
@@ -52,6 +51,7 @@ class BookController {
                 ...req.body,
                 user: req.user,
                 role: req.role,
+                book: req.params.id,
             });
             return res.status(200).json(user);
         } catch (err) {
@@ -62,9 +62,9 @@ class BookController {
     async deleteBook(req: CustomRequest, res: Response, next: NextFunction) {
         try {
             const user = await bookService.deleteBook({
-                ...req.body,
                 user: req.user,
                 role: req.role,
+                book: req.params.id
             });
             return res.status(200).json(user);
         } catch (err) {
@@ -78,6 +78,7 @@ class BookController {
                 ...req.body,
                 user: req.user,
                 role: req.role,
+                book: req.params.id
             });
             return res.status(200).json(user);
         } catch (err) {
@@ -88,7 +89,7 @@ class BookController {
     async returnBook(req: CustomRequest, res: Response, next: NextFunction) {
         try {
             const user = await bookService.returnBook({
-                ...req.body,
+                book: req.params.id,
                 user: req.user,
                 role: req.role,
             });

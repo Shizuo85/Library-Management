@@ -1,17 +1,24 @@
 import Joi from 'joi';
+import mongoose from 'mongoose';
 
 class BookSchema {
     createBook = Joi.object({
-        title: Joi.string().required()
-    })
+        title: Joi.string().required(),
+    });
 
-    updateBook = Joi.object({})
+    updateBook = Joi.object({
+        title: Joi.string(),
+        author: Joi.string().custom((value, helpers) => {
+            if (!mongoose.Types.ObjectId.isValid(value)) {
+                return helpers.error('any.invalid');
+            }
+            return value;
+        }, 'ID Validation'),
+    }).or('title', 'author');
 
-    deleteBook = Joi.object({})
-
-    borrowBook = Joi.object({})
-
-    returnBook = Joi.object({})
+    borrowBook = Joi.object({
+        due_date: Joi.date().iso().greater('now').required(),
+    });
 }
 
 export default new BookSchema();

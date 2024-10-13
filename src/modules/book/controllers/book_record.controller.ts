@@ -8,7 +8,7 @@ class RecordController {
     async fetchRecord(req: CustomRequest, res: Response, next: NextFunction) {
         try {
             const user = await recordService.fetchRecord({
-                ...req.body,
+                record: req.params.id,
                 user: req.user,
                 role: req.role,
             });
@@ -21,7 +21,6 @@ class RecordController {
     async fetchRecords(req: CustomRequest, res: Response, next: NextFunction) {
         try {
             const user = await recordService.fetchRecords({
-                ...req.body,
                 user: req.user,
                 role: req.role,
             });

@@ -5,6 +5,8 @@ import authMiddleware from "../modules/user/middleware/auth.middleware";
 import bookController from '../modules/book/controllers/book.controller';
 import bookMiddleware from '../modules/book/middleware/book.middleware';
 
+import recordController from '../modules/book/controllers/book_record.controller';
+
 import generalMiddleware from '../modules/general/middleware/general.middleware';
 
 const bookRouter = Router();
@@ -12,6 +14,7 @@ const bookRouter = Router();
 bookRouter.post(
     '/create/:id',
     authMiddleware,
+    generalMiddleware.sanitizeParams,
     bookMiddleware.createBook,
     bookController.createBook
 );
@@ -43,6 +46,35 @@ bookRouter.delete(
     authMiddleware,
     generalMiddleware.sanitizeParams,
     bookController.deleteBook
+);
+
+bookRouter.post(
+    '/borrow/:id',
+    authMiddleware,
+    generalMiddleware.sanitizeParams,
+    bookMiddleware.borrowBook,
+    bookController.borrowBook
+);
+
+bookRouter.post(
+    '/return/:id',
+    authMiddleware,
+    generalMiddleware.sanitizeParams,
+    bookController.returnBook
+);
+
+bookRouter.get(
+    '/fetch-record/:id',
+    authMiddleware,
+    generalMiddleware.sanitizeParams,
+    recordController.fetchRecord
+);
+
+bookRouter.get(
+    '/record/all',
+    authMiddleware,
+    generalMiddleware.pagination,
+    recordController.fetchRecords
 );
 
 export default bookRouter;
