@@ -81,6 +81,13 @@ class BookService {
     }
 
     async updateBook(data: any) {
+        if (data.role != 'admin' && data.role != 'librarian') {
+            const err: any = new Error(
+                'Only admins and librarians can manage books'
+            );
+            err.status = 403;
+            throw err;
+        }
         const { role, user, book, ...update } = data;
         const bookData: any = await bookRepo.findOne({
             _id: { $eq: data.book },

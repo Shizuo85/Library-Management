@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import otpGenerator from 'otp-generator';
+import { Types } from "mongoose";
 
 import userRepo from '../../user/repository/user.repo';
 import { sendMail } from '../../mailjet/mailjet.controller';
@@ -230,8 +231,35 @@ class AccountService {
         };
     }
 
-    //update profile
-    //fetch profile
+    async fetchProfile(data: any) {
+        const user = await userRepo.fetchUser(
+            {
+                _id: { $eq: new Types.ObjectId(data.user) },
+            }
+        );
+
+        return {
+            message: 'success',
+            data: {
+                user,
+            },
+        };
+    }
+
+    async updateProfile(data: any) {
+        const { role, user, ...update } = data;
+        
+        await userRepo.updateOne(
+            {
+                _id: { $eq: user },
+            },
+            update
+        );
+
+        return {
+            message: 'success',
+        };
+    }
 }
 
 export default new AccountService();

@@ -37,6 +37,11 @@ class AccountSchema {
     updateLoginWithGoogle = Joi.object({
         google_login: Joi.boolean().required(),
     });
+
+    updateProfile = Joi.object({
+        first_name: Joi.string(),
+        last_name: Joi.string(),
+    }).or('first_name', 'last_name')
 }
 
 export default new AccountSchema();

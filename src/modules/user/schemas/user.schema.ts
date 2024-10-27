@@ -1,16 +1,11 @@
 import Joi from "joi";
-// import mongoose from "mongoose";
-// import validator from "validator";
-// import moment from "moment";
 
 class UserSchema {
-    updateUser = Joi.object({})
-
-    fetchUser = Joi.object({})
-
-    fetchUsers = Joi.object({})    
-
-    deleteUser = Joi.object({})
+    updateUser = Joi.object({
+        role: Joi.string().valid("librarian", "member", 'admin'),
+        first_name: Joi.string(),
+        last_name: Joi.string(),
+    }).or('role', 'first_name', 'last_name')
 }
 
 export default new UserSchema();

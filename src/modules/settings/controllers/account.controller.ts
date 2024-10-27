@@ -80,6 +80,30 @@ class AccountController {
             return next(err);
         }
     }
+
+    async fetchProfile(req: CustomRequest, res: Response, next: NextFunction) {
+        try {
+            const user = await accountService.fetchProfile({
+                user: req.user,
+                role: req.role
+            });
+            return res.status(200).json(user);
+        } catch (err) {
+            return next(err);
+        }
+    }
+    async updateProfile(req: CustomRequest, res: Response, next: NextFunction) {
+        try {
+            const user = await accountService.updateProfile({
+                ...req.body,
+                user: req.user,
+                role: req.role
+            });
+            return res.status(200).json(user);
+        } catch (err) {
+            return next(err);
+        }
+    }
 }
 
 export default new AccountController();

@@ -42,4 +42,17 @@ settingsRouter.post(
     accountController.resendEmailCode
 );
 
+settingsRouter.patch(
+    "/edit/",
+    authMiddleware,
+    accountMiddleware.updateProfile,
+    accountController.updateProfile
+);
+
+settingsRouter.get(
+    "/profile/",
+    authMiddleware,
+    accountController.fetchProfile
+);
+
 export default settingsRouter;

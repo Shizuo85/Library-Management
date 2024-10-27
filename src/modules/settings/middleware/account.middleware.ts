@@ -61,6 +61,17 @@ class AccountMiddleware {
             return next(err);
         }
     }
+
+    async updateProfile(req: Request, res: Response, next: NextFunction) {
+        try {
+            sanitizer(req.body);
+            await accountSchema.updateProfile.validateAsync(req.body);
+            return next();
+        } catch(err: any){
+            err.status = 422;
+            return next(err);
+        }
+    }
 }
 
 export default new AccountMiddleware();

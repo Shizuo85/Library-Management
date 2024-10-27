@@ -8,9 +8,9 @@ class UserController {
     async fetchUser(req: CustomRequest, res: Response, next: NextFunction) {
         try {
             const user = await userService.fetchUser({
-                ...req.body,
                 user: req.user,
                 role: req.role,
+                member: req.params.id
             });
             return res.status(200).json(user);
         } catch (err) {
@@ -37,6 +37,7 @@ class UserController {
                 ...req.body,
                 user: req.user,
                 role: req.role,
+                member: req.params.id
             });
             return res.status(200).json(user);
         } catch (err) {
